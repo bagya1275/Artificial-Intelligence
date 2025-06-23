@@ -1,0 +1,30 @@
+from queue import PriorityQueue
+
+def astar(start, goal, graph, heuristics):
+    pq = PriorityQueue()
+    pq.put((0, start))
+    visited = set()
+    g = {start: 0}
+    while not pq.empty():
+        cost, node = pq.get()
+        if node == goal:
+            print(f"Reached {goal} with cost {cost}")
+            return
+        if node in visited:
+            continue
+        visited.add(node)
+        for neighbor, weight in graph[node].items():
+            new_cost = g[node] + weight
+            if neighbor not in g or new_cost < g[neighbor]:
+                g[neighbor] = new_cost
+                f = new_cost + heuristics[neighbor]
+                pq.put((f, neighbor))
+
+graph = {
+    'A': {'B': 1, 'C': 4},
+    'B': {'D': 2, 'E': 5},
+    'C': {'F': 3},
+    'D': {}, 'E': {}, 'F': {}
+}
+heuristics = {'A': 7, 'B': 6, 'C': 2, 'D': 1, 'E': 0, 'F': 0}
+astar('A', 'E', graph, heuristics)
