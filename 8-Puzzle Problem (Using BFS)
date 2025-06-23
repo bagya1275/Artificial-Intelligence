@@ -1,0 +1,36 @@
+from collections import deque
+
+def is_goal(state):
+    return state == '123456780'
+
+def get_neighbors(state):
+    moves = []
+    idx = state.index('0')
+    row, col = divmod(idx, 3)
+    directions = {'U': -3, 'D': 3, 'L': -1, 'R': 1}
+    for move, delta in directions.items():
+        new_idx = idx + delta
+        if 0 <= new_idx < 9:
+            if move in ['L', 'R'] and (idx // 3 != new_idx // 3):
+                continue
+            temp = list(state)
+            temp[idx], temp[new_idx] = temp[new_idx], temp[idx]
+            moves.append(''.join(temp))
+    return moves
+
+def bfs(start):
+    visited = set()
+    queue = deque([(start, [])])
+    while queue:
+        state, path = queue.popleft()
+        if state in visited:
+            continue
+        visited.add(state)
+        if is_goal(state):
+            return path
+        for neighbor in get_neighbors(state):
+            queue.append((neighbor, path + [neighbor]))
+
+start_state = '123456708'  # 0 is blank
+solution = bfs(start_state)
+print("Steps to solve:", solution)
