@@ -1,0 +1,10 @@
+def vacuum_agent(state):
+    for room in state:
+        if state[room] == 'dirty':
+            print(f"Cleaning {room}")
+            state[room] = 'clean'
+        else:
+            print(f"{room} already clean")
+
+rooms = {'A': 'dirty', 'B': 'clean'}
+vacuum_agent(rooms)
