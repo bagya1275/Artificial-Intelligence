@@ -1,0 +1,15 @@
+def is_safe(board, row, col):
+    for i in range(row):
+        if board[i] == col or abs(board[i] - col) == abs(i - row):
+            return False
+    return True
+
+def solve_nqueens(n, board=[], row=0):
+    if row == n:
+        print(board)
+        return
+    for col in range(n):
+        if is_safe(board, row, col):
+            solve_nqueens(n, board + [col], row + 1)
+
+solve_nqueens(8)
