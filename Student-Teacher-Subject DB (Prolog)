@@ -1,0 +1,3 @@
+teaches(mr_smith, math).
+student(john, math).
+student(jane, math).
