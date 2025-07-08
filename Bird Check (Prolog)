@@ -1,0 +1,4 @@
+bird(sparrow).
+bird(parrot).
+flies(X) :- bird(X), \+ flightless(X).
+flightless(penguin).
