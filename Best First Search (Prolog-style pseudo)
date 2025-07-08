@@ -1,0 +1,3 @@
+best_first(Start, Goal) :- path(Start, Goal, [Start], Path), write(Path).
+% Placeholder for path-finding logic.
+
