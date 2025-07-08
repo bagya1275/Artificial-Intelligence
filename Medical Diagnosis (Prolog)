@@ -1,0 +1,3 @@
+symptom(fever).
+symptom(cough).
+disease(cold) :- symptom(fever), symptom(cough).
