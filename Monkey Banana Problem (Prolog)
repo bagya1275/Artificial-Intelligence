@@ -1,0 +1,3 @@
+has(monkey, nothing).
+can_reach(monkey, banana).
+get_banana :- can_reach(monkey, banana), write('Monkey gets the banana').
