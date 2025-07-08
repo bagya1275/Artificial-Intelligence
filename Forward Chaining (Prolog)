@@ -1,0 +1,2 @@
+fact(a).
+rule(b) :- a.
