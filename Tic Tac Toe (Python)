@@ -1,0 +1,16 @@
+board = [' ']*9
+def print_board():
+    for i in range(0, 9, 3): print('|'.join(board[i:i+3]))
+
+def check_win(p): 
+    w = [(0,1,2),(3,4,5),(6,7,8),(0,3,6),(1,4,7),(2,5,8),(0,4,8),(2,4,6)]
+    return any(board[i]==board[j]==board[k]==p for i,j,k in w)
+
+for turn in range(9):
+    print_board()
+    p = 'X' if turn%2==0 else 'O'
+    move = int(input(f"Player {p}, enter 0-8: "))
+    board[move] = p
+    if check_win(p):
+        print_board(); print(f"Player {p} wins!"); break
+else: print("Draw")
